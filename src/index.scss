@@ -12,13 +12,8 @@
   --sub-text: #c4c4c4;
   --alert: #b24343;
   --success: #4c7435;
-  --button: linear-gradient(78.55deg, #7a05ab 0%, #ee3d5a 48.44%, #f2bc12 100%);
-  --button-hover: linear-gradient(
-    264.48deg,
-    #7a05ab 7.38%,
-    #ee3d5a 47.97%,
-    #f2bc12 91.19%
-  );
+  --button: #7a05ab;
+  --button-hover: #ee3d5a;
   --button-hover-color: #fff;
   --default-border-color: #313745;
   --icon: #fff8dc;
@@ -37,6 +32,7 @@ body {
   background-color: var(--primary);
   color: var(--text);
   font-family: "Handjet", sans-serif;
+  font-size: 24px;
 }
 a {
   color: inherit;

@@ -7,9 +7,8 @@
   text-align: center;
   margin-top: 35px;
 }
-.burger_item {
-
-}
-.burger_cart {
-    
+.burger_inner {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
