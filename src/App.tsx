@@ -6,7 +6,6 @@ import { Footer } from "./components/Footer";
 import { BurgerPage } from "./pages/Burger";
 
 function App() {
-
   return (
     <div>
       <Header />

@@ -6,8 +6,13 @@ export const burgerApi = createApi({
     endpoints: (builder) => ({
         getAllBurger: builder.query({
             query: () => `BroBurger`,
+
+        }),
+        sortBurgerFromName: builder.query({
+            query: () => `BroBurger?sortBy=name`,
+
         })
     })
 })
 
-export const { useGetAllBurgerQuery } = burgerApi
+export const { useGetAllBurgerQuery, useSortBurgerFromNameQuery } = burgerApi

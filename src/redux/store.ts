@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { burgerApi } from "./burgerApi";
+import aboutBurger from "./slices/aboutBurgerSlices";
 
 export const store = configureStore({
-  reducer: { [burgerApi.reducerPath]: burgerApi.reducer },
+  reducer: {
+    aboutBurger,
+    [burgerApi.reducerPath]: burgerApi.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(burgerApi.middleware),
 });
