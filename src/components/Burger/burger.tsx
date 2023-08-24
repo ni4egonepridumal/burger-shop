@@ -31,7 +31,7 @@ export const ChoiseBurger = ({ popup, setPopup }: IBurgerPage) => {
                 <div key={burger.id} className={styles.inner}>
                     <img src={`./burgerImg/${burger.image}`} />
                     <div>
-                        <div>Цена: {burger.price} руб.</div>
+                        <div><span className={styles.text_color}>Цена:</span> {burger.price} руб.</div>
                         <div className={styles.text_color}>Состав:</div>
                         <div>{burger.composition}</div>
                         <div className={styles.text_color}>Добавить комментарий:</div>
