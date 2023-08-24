@@ -3,22 +3,23 @@ import cn from "classnames";
 
 interface IButtonProps {
     children: React.ReactNode
-    type: string
+    viev: string
+    type?: string
     size: string
     onClick?: () => void
 }
 
 export const Button: React.FC<IButtonProps> = ({
     children,
-    type,
+    viev,
     size,
     onClick,
 }) => {
     return (
         <button
             className={cn(styles.btn, {
-                [styles.primary]: type === "primary",
-                [styles.secondary]: type === "secondary",
+                [styles.primary]: viev === "primary",
+                [styles.secondary]: viev === "secondary",
                 [styles.small]: size === "s",
                 [styles.medium]: size === "m",
             })}

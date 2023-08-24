@@ -14,7 +14,7 @@ interface IBurger {
     order: number
     price: number
     weight: number
-    comments: string[]
+    comments: [{ name: string, comment: string }]
 }
 
 const myState: IBurger[] = []
@@ -23,9 +23,9 @@ export const aboutBurger = createSlice({
     name: "aboutBurger",
     initialState: myState,
     reducers: {
-        moreAboutBurger: (state: IBurger[], action: PayloadAction<IBurger>) => {
-            return state = [action.payload]
-        },
+        moreAboutBurger: (state: IBurger[], action: PayloadAction<IBurger>) => 
+             state = [action.payload]
+        ,
     },
 });
 

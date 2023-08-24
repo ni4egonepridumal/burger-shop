@@ -1,4 +1,4 @@
-import { BurgerCart } from "../../components/BurgerCart";
+import { BurgerItem } from "../../components/BurgerItem";
 import styles from "./home.module.scss"
 import { useGetAllBurgerQuery, useSortBurgerFromNameQuery } from "../../redux";
 import MoonLoaderfrom from "react-spinners/MoonLoader";
@@ -42,8 +42,8 @@ export const HomePage = () => {
             <div className={styles.burger_inner}>
                 {isLoading ?
                     <div className={styles.loader}><MoonLoaderfrom size={100} /></div>
-                    : burger === "alphabet" ? sortBurgerAlphabet?.map((burger: IBurger) => <BurgerCart key={burger.id} burgers={burger} />)
-                        : allBurger?.map((burger: IBurger) => <BurgerCart key={burger.id} burgers={burger} />)}
+                    : burger === "alphabet" ? sortBurgerAlphabet?.map((burger: IBurger) => <BurgerItem key={burger.id} burgers={burger} />)
+                        : allBurger?.map((burger: IBurger) => <BurgerItem key={burger.id} burgers={burger} />)}
             </div>
 
         </div>

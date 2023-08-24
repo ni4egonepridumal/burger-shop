@@ -1,8 +1,9 @@
-import { Link } from 'react-router-dom';
 import { Button } from '../Button';
-import styles from './BurgerCart.module.scss';
+import { Popup } from '../Popup';
+import styles from './BurgerItem.module.scss';
 import { useAppDispatch } from '../../redux/hooks';
 import { moreAboutBurger } from '../../redux/slices/aboutBurgerSlices';
+import React from 'react';
 
 interface IBurger {
     composition: string
@@ -25,8 +26,14 @@ interface IBurgerCartProps {
     burgers: IBurger
 }
 
-export const BurgerCart: React.FC<IBurgerCartProps> = ({ burgers }) => {
-    const dispatch = useAppDispatch()
+export const BurgerItem: React.FC<IBurgerCartProps> = ({ burgers }) => {
+    const dispatch = useAppDispatch();
+    const [popup, setPopup] = React.useState(false);
+
+    const showPopup = () => {
+        dispatch(moreAboutBurger(burgers))
+        setPopup(!popup);
+    }
     return (
         <div className={styles.burger_cart}>
             <img className={styles.burger_image} src={`./burgerImg/${burgers.image}`} />
@@ -38,8 +45,9 @@ export const BurgerCart: React.FC<IBurgerCartProps> = ({ burgers }) => {
                 </div>
             </div>
             <div className={styles.burger_footer}>
-                <Link onClick={() => dispatch(moreAboutBurger(burgers))} to='/burger' className={styles.burger_more}>Подробнее</Link>
-                <Button type='primary' size='s' onClick={() => console.log(burgers.id)}>В корзину</Button>
+                <div onClick={showPopup} className={styles.burger_more}>Подробнее</div>
+                {popup && <Popup popup={popup} setPopup={setPopup} />}
+                <Button viev='primary' size='s' onClick={() => console.log(burgers.id)}>В корзину</Button>
             </div>
 
         </div>

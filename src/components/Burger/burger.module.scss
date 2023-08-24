@@ -14,8 +14,9 @@
 .feedback_size {
   max-width: 200px;
 }
-.button {
-  margin-bottom: 15px;
+.overflow {
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 /* from button */

@@ -1,13 +1,13 @@
 import styles from './feedback.module.scss';
 
 interface IFeedback {
-    comments: { name: string, comment: string }
+    itemComment: { name: string, comment: string }
 }
-export const Feedback: React.FC<IFeedback> = ({ comments }) => {
+export const Feedback: React.FC<IFeedback> = ({ itemComment }) => {
     return (
         <div className={styles.feedback}>
-            <p className={styles.text}>{comments.name} пишет...</p>
-            <p>{comments.comment}</p>
+            <div className={styles.text}>{itemComment.name} пишет...</div>
+            <div>{itemComment.comment}</div>
         </div>
     );
 };
