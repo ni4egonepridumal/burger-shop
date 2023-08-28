@@ -1,21 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { IBurger } from "../../types";
 
-interface IBurger {
-    composition: string
-    deleted: boolean
-    description: string
-    discount: number
-    discountPrice: number
-    id: number
-    image: string
-    isDailyDish: boolean
-    limit: number
-    name: string
-    order: number
-    price: number
-    weight: number
-    comments: [{ name: string, comment: string }]
-}
+
 
 const myState: IBurger[] = []
 
@@ -23,9 +9,8 @@ export const aboutBurger = createSlice({
     name: "aboutBurger",
     initialState: myState,
     reducers: {
-        moreAboutBurger: (state: IBurger[], action: PayloadAction<IBurger>) => 
-             state = [action.payload]
-        ,
+        moreAboutBurger: (state: IBurger[], action: PayloadAction<IBurger>) =>
+            state = [action.payload],
     },
 });
 

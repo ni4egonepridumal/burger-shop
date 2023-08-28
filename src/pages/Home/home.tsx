@@ -3,23 +3,9 @@ import styles from "./home.module.scss"
 import { useGetAllBurgerQuery, useSortBurgerFromNameQuery } from "../../redux";
 import MoonLoaderfrom from "react-spinners/MoonLoader";
 import React from "react";
+import { IBurger } from "../../types";
 
-interface IBurger {
-    composition: string
-    deleted: boolean
-    description: string
-    discount: number
-    discountPrice: number
-    id: number
-    image: string
-    isDailyDish: boolean
-    limit: number
-    name: string
-    order: number
-    price: number
-    weight: number
-    comments: [{ name: string, comment: string }]
-}
+
 export const HomePage = () => {
     const { data: allBurger, isLoading } = useGetAllBurgerQuery();
     const { data: sortBurgerAlphabet } = useSortBurgerFromNameQuery();
@@ -27,8 +13,6 @@ export const HomePage = () => {
     const sortBurger = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setBurger(e.target.value);
     }
-
-
     return (
         <div className={styles.container}>
             <h1 className={styles.burger_head}>Выбери свой бургер</h1>
@@ -45,7 +29,6 @@ export const HomePage = () => {
                     : burger === "alphabet" ? sortBurgerAlphabet?.map((burger: IBurger) => <BurgerItem key={burger.id} burgers={burger} />)
                         : allBurger?.map((burger: IBurger) => <BurgerItem key={burger.id} burgers={burger} />)}
             </div>
-
         </div>
     );
 };

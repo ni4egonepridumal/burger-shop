@@ -2,10 +2,12 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { burgerApi } from "./burgerApi";
 import aboutBurger from "./slices/aboutBurgerSlices";
+import burgerToCart from "./slices/addBurgerToCartSlice";
 
 export const store = configureStore({
   reducer: {
     aboutBurger,
+    burgerToCart,
     [burgerApi.reducerPath]: burgerApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

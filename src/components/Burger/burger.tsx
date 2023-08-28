@@ -1,10 +1,12 @@
 
 import { Button } from "../Button";
-import { useAppSelector } from "../../redux/hooks";
 import styles from "./burger.module.scss";
 import { Feedback } from "../Feedback/feedback";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { InputFromRHF } from "../InputFromRHF";
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { addBurgerToCart, deleteBurgerFromCart } from '../../redux/slices/addBurgerToCartSlice'
+import { IBurger } from "../../types";
 
 
 type InputForm = {
@@ -15,10 +17,26 @@ type InputForm = {
 type IBurgerPage = {
     popup: boolean,
     setPopup: (arg0: boolean) => void
+    burgers: IBurger,
 }
 
-export const ChoiseBurger = ({ popup, setPopup }: IBurgerPage) => {
-    const choseBurger = useAppSelector(state => state.aboutBurger)
+export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
+    // const choseBurger = useAppSelector(state => state.aboutBurger)
+    const { aboutBurger, burgerToCart } = useAppSelector(state => state)
+    const dispatch = useAppDispatch();
+
+    const handleClick = () => {
+        !choiseBurger ? addBurgerFromCart() : removeBurgerfromCart()
+    }
+    const addBurgerFromCart = () => {
+        dispatch(addBurgerToCart(burgers))
+    }
+    const removeBurgerfromCart = () => {
+        dispatch(deleteBurgerFromCart(burgers.id))
+    }
+    let burgerFromLocalStorage = [];
+    burgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
+    const choiseBurger = burgerFromLocalStorage ? burgerFromLocalStorage?.some((burger: IBurger) => burger.id === burgers.id) : burgerToCart?.some((burger: IBurger) => burger.id === burgers.id)
     const {
         handleSubmit,
         // formState: { errors },
@@ -27,7 +45,7 @@ export const ChoiseBurger = ({ popup, setPopup }: IBurgerPage) => {
     const onSubmit: SubmitHandler<InputForm> = (data) => console.log(data)
     return (
         <div className={styles.container}>
-            {choseBurger.map(burger =>
+            {aboutBurger.map(burger =>
                 <div key={burger.id} className={styles.inner}>
                     <img src={`./burgerImg/${burger.image}`} />
                     <div>
@@ -80,7 +98,7 @@ export const ChoiseBurger = ({ popup, setPopup }: IBurgerPage) => {
                     <Button onClick={() => setPopup(!popup)} viev="secondary" size='m'>Вернуться</Button>
                 </div>
                 <div>
-                    <Button viev="secondary" size='m'>В корзину</Button>
+                    <Button viev={'secondary'} size='m' onClick={handleClick}>{choiseBurger ? "Удалить" : "В корзину"}</Button>
                 </div>
             </div>
         </div >
