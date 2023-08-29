@@ -33,3 +33,10 @@
   fill: var(--accent);
   transition: all 0.9s ease;
 }
+.countBurger {
+  background-color: var(--button);
+  border-radius: 15px;
+  display: inline-block;
+  font-size: 25px;
+  padding: 0px 9px;
+}

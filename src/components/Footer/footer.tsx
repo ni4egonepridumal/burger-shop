@@ -30,6 +30,7 @@ export const Footer = () => {
                     />
                 </a>
             </div>
+            <button onClick={() => localStorage.clear()}>Очистиль лдокалстоража</button>
         </div>
     );
 };

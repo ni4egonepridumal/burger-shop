@@ -16,6 +16,7 @@ export const BurgerItem: React.FC<IBurgerCartProps> = ({ burgers }) => {
     const dispatch = useAppDispatch();
     const [popup, setPopup] = React.useState(false);
     const { burgerToCart } = useAppSelector((state) => state);
+    console.log("burgerToCart", burgerToCart)
     const showPopup = () => {
         dispatch(moreAboutBurger(burgers))
         setPopup(!popup);
@@ -45,7 +46,7 @@ export const BurgerItem: React.FC<IBurgerCartProps> = ({ burgers }) => {
             </div>
             <div className={styles.burger_footer}>
                 <div onClick={showPopup} className={styles.burger_more}>Подробнее</div>
-                {popup && <Popup popup={popup} setPopup={setPopup} burgers={burgers}/>}
+                {popup && <Popup popup={popup} setPopup={setPopup} burgers={burgers} />}
                 <Button viev={choiseBurger ? 'secondary' : 'primary'} size='s' onClick={handleClick}>{choiseBurger ? "Удалить" : "В корзину"}</Button>
             </div>
         </div>
