@@ -15,7 +15,6 @@ export const InputFromRHF: React.FC<IInputProps> = ({
   onMyChange,
   label,
   placeholder,
-  // color,
   type,
 
 }) => {

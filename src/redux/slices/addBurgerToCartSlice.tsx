@@ -21,7 +21,6 @@ export const burgerToCart = createSlice({
                 return setBurgerFromLocalStore;
             }
         },
-
         deleteBurgerFromCart: (state, action) => {
             const getBurgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
             if (getBurgerFromLocalStorage) {
@@ -34,7 +33,6 @@ export const burgerToCart = createSlice({
             }
 
         },
-        /* пробую */
         setCountPlusBurger: (state, action: PayloadAction<number>) => {
             const getBurgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
             if (getBurgerFromLocalStorage) {

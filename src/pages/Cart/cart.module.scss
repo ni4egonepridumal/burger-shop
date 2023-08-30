@@ -31,3 +31,18 @@
 .text {
   color: var(--accent);
 }
+.cart_inner {
+  display: flex;
+  justify-content: space-between;
+}
+.fixed {
+  position: fixed;
+  top: 100px;
+  right: 400px;
+  max-width: 200px;
+}
+.totalPrice {
+  position: fixed;
+  right: 400px;
+  top: 480px;
+}

@@ -27,7 +27,7 @@ export const OneBurgerFromCart = ({ burger }: IOneBurgerFromCart) => {
     return (
         <div className={styles.position}>
             <img className={styles.image} src={`./burgerImg/${burger.image}`} />
-            <div>
+            <div style={{ margin: '0 15px' }}>
                 <p style={{ textAlign: "center" }}>Количество</p>
                 <div style={{ textAlign: "center" }}>
                     <span className={styles.button} onClick={handleMinusClick}>-</span>
@@ -35,8 +35,8 @@ export const OneBurgerFromCart = ({ burger }: IOneBurgerFromCart) => {
                     <span className={styles.button} onClick={handlePlusClick}>+</span>
                 </div>
             </div>
-            <div>
-                Цена за шт <span>{burgerPrice} руб.</span>
+            <div style={{ margin: '0 15px' }}>
+                Цена <span>{burgerPrice} руб.</span>
             </div>
 
             <Button viev='primary' size="s" onClick={() => dispatch(deleteBurgerFromCart(burger.id))}>Удалить</Button>

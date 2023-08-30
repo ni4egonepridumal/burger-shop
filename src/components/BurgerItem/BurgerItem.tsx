@@ -16,7 +16,6 @@ export const BurgerItem: React.FC<IBurgerCartProps> = ({ burgers }) => {
     const dispatch = useAppDispatch();
     const [popup, setPopup] = React.useState(false);
     const { burgerToCart } = useAppSelector((state) => state);
-    console.log("burgerToCart", burgerToCart)
     const showPopup = () => {
         dispatch(moreAboutBurger(burgers))
         setPopup(!popup);

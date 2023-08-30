@@ -3,13 +3,11 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { burgerApi } from "./burgerApi";
 import aboutBurger from "./slices/aboutBurgerSlices";
 import burgerToCart from "./slices/addBurgerToCartSlice";
-import countBurger from "./slices/countBurgerSlice";
 
 export const store = configureStore({
   reducer: {
     aboutBurger,
     burgerToCart,
-    countBurger,
     [burgerApi.reducerPath]: burgerApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

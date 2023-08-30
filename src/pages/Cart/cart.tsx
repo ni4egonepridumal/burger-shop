@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import styles from "./cart.module.scss";
-import { OneBurgerFromCart } from "../../components/oneBurgerFromCart";
+import { OneBurgerFromCart } from "../../components/OneBurgerFromCart";
 import { IBurger } from "../../types";
 import { useAppSelector } from "../../redux/hooks";
-
-
-
-
+import { DataUser } from "../../components/DataUser";
 
 export const CartPage = () => {
     //@ts-ignore
@@ -14,15 +11,19 @@ export const CartPage = () => {
     const { burgerToCart } = useAppSelector(state => state);
     const totalPriceFromState = burgerToCart.reduce((accum, burger) => accum += burger.price * burger.count, 0)
     const totalPriceFromLocalStorage = burgerFromLocalStorage.reduce((accum: number, burger: IBurger) => accum += burger.price * burger.count, 0)
-    // const itog = totalSumm.reduce((acc, item) => acc += item, 0)
     return (
         <>
             {burgerFromLocalStorage.length > 0 ?
                 <div className={styles.container}>
-                    <div>
-                        {burgerToCart && burgerFromLocalStorage.map((burger: IBurger) => <OneBurgerFromCart key={burger.id} burger={burger} />)}
+                    <div className={styles.cart_inner}>
+                        <div>
+                            {burgerToCart && burgerFromLocalStorage.map((burger: IBurger) => <OneBurgerFromCart key={burger.id} burger={burger} />)}
+                        </div>
+                        <div className={styles.fixed}>
+                            <DataUser />
+                        </div>
                     </div>
-                    <div>Общая стоимость заказа: <span>{totalPriceFromLocalStorage && totalPriceFromLocalStorage} руб</span></div>
+                    <div className={styles.totalPrice}>Общая стоимость заказа: <span>{totalPriceFromLocalStorage && totalPriceFromLocalStorage} руб</span></div>
                 </div>
                 :
                 <div className={styles.container_epmpty}>
