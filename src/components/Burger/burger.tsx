@@ -28,9 +28,9 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
 
     const cloneBurgerObj = structuredClone(burgers)
 
-    const addNewComment = (dataFromForm: InputForm, cloneBurgerObj: IBurger) => {
-        cloneBurgerObj.comments.push(dataFromForm)
-        addComment(cloneBurgerObj)
+    const addNewComment = async (dataFromForm: InputForm, cloneBurgerObj: IBurger) => {
+        await cloneBurgerObj.comments.push(dataFromForm)
+        await addComment(cloneBurgerObj).unwrap()
     }
     const dispatch = useAppDispatch();
 
