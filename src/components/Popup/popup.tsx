@@ -15,7 +15,7 @@ export const Popup: React.FC<IPopup> = ({ popup, setPopup, burgers }) => {
         <div className={styles.modal}>
             <div onClick={() => setPopup(!popup)} className={styles.overlay}></div>
             <div className={styles.modal_content}>
-                <ChoiseBurger popup={popup} setPopup={setPopup} burgers={burgers}/>
+                <ChoiseBurger popup={popup} setPopup={setPopup} burgers={burgers} />
             </div>
 
         </div>

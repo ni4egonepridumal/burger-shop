@@ -25,6 +25,7 @@ type IBurgerPage = {
 export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
     const { aboutBurger, burgerToCart } = useAppSelector(state => state)
     const [addComment, { isError }] = useAddCommentFromClientMutation();
+    const [flag, setFlag] = React.useState(false);
 
     const cloneBurgerObj = structuredClone(burgers)
 
@@ -36,6 +37,10 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
 
     const handleClick = () => {
         !choiseBurger ? addBurgerFromCart() : removeBurgerfromCart()
+    }
+    const handleFlag = () => {
+        setFlag(!flag);
+        alert("коментарий добавлен, после модерации он появится")
     }
     const addBurgerFromCart = () => {
         dispatch(addBurgerToCart(burgers))
@@ -90,12 +95,13 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
                                 )}
                             />
                             <div style={{ marginTop: "15px" }}>
-                                <Button viev="primary" type="submit" size='s'>Добавить</Button>
+                                <Button viev="primary" type="submit" size='s' onClick={handleFlag}>Добавить</Button>
                             </div>
                         </form>
                         <div className={styles.overflow}>
                             <div className={styles.text_color}>Отзывы:</div>
-                            <div>{burger.comments.map((item: { name: string, comment: string }) => <Feedback key={item.name} itemComment={item} />)}</div>
+
+                            <div>{burger.comments.map((item: { name: string, comment: string }) => <Feedback key={item.comment} itemComment={item} />)}</div>
                         </div>
 
                     </div>
