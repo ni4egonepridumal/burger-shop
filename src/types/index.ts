@@ -4,7 +4,7 @@ export interface IBurger {
   description: string;
   discount: number;
   discountPrice: number;
-  id: number;
+  id: string;
   image: string;
   isDailyDish: boolean;
   limit: number;

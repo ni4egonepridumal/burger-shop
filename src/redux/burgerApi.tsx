@@ -10,9 +10,17 @@ export const burgerApi = createApi({
         }),
         sortBurgerFromName: builder.query({
             query: () => `BroBurger?sortBy=name`,
-
+        }),
+        // тестирую добавление коментария
+        addCommentFromClient: builder.mutation({
+            query: (body) => ({
+                headers: { 'content-type': 'application/json' },
+                url: `BroBurger/${body.id}`,
+                method: "PUT",
+                body: JSON.stringify(body)
+            })
         })
     })
 })
 
-export const { useGetAllBurgerQuery, useSortBurgerFromNameQuery } = burgerApi
+export const { useGetAllBurgerQuery, useSortBurgerFromNameQuery, useAddCommentFromClientMutation } = burgerApi

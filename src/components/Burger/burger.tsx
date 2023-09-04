@@ -1,4 +1,4 @@
-
+import React from "react";
 import { Button } from "../Button";
 import styles from "./burger.module.scss";
 import { Feedback } from "../Feedback/feedback";
@@ -7,6 +7,8 @@ import { InputFromRHF } from "../InputFromRHF";
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { addBurgerToCart, deleteBurgerFromCart } from '../../redux/slices/addBurgerToCartSlice'
 import { IBurger } from "../../types";
+import { useAddCommentFromClientMutation } from "../../redux";
+
 
 
 type InputForm = {
@@ -21,8 +23,15 @@ type IBurgerPage = {
 }
 
 export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
-    // const choseBurger = useAppSelector(state => state.aboutBurger)
     const { aboutBurger, burgerToCart } = useAppSelector(state => state)
+    const [addComment, { isError }] = useAddCommentFromClientMutation();
+
+    const cloneBurgerObj = structuredClone(burgers)
+
+    const addNewComment = (dataFromForm: InputForm, cloneBurgerObj: IBurger) => {
+        cloneBurgerObj.comments.push(dataFromForm)
+        addComment(cloneBurgerObj)
+    }
     const dispatch = useAppDispatch();
 
     const handleClick = () => {
@@ -42,7 +51,7 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
         // formState: { errors },
         control
     } = useForm<InputForm>()
-    const onSubmit: SubmitHandler<InputForm> = (data) => console.log(data)
+    const onSubmit: SubmitHandler<InputForm> = (data) => addNewComment(data, cloneBurgerObj)
     return (
         <div className={styles.container}>
             {aboutBurger.map(burger =>
