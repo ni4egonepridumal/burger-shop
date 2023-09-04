@@ -25,7 +25,6 @@ type IBurgerPage = {
 export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
     const { aboutBurger, burgerToCart } = useAppSelector(state => state)
     const [addComment, { isError }] = useAddCommentFromClientMutation();
-    const [flag, setFlag] = React.useState(false);
 
     const cloneBurgerObj = structuredClone(burgers)
 
@@ -39,8 +38,12 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
         !choiseBurger ? addBurgerFromCart() : removeBurgerfromCart()
     }
     const handleFlag = () => {
-        setFlag(!flag);
-        alert("коментарий добавлен, после модерации он появится")
+        if (errors.name || errors.comment || formWatch[0] === undefined || formWatch[1] === undefined) {
+            alert("заполните пожалуйста обязательное поле")
+        } else {
+            alert("коментарий добавлен, после модерации он появится")
+        }
+
     }
     const addBurgerFromCart = () => {
         dispatch(addBurgerToCart(burgers))
@@ -53,9 +56,14 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
     const choiseBurger = burgerFromLocalStorage ? burgerFromLocalStorage?.some((burger: IBurger) => burger.id === burgers.id) : burgerToCart?.some((burger: IBurger) => burger.id === burgers.id)
     const {
         handleSubmit,
-        // formState: { errors },
-        control
-    } = useForm<InputForm>()
+        formState: { errors },
+        control,
+        watch,
+    } = useForm<InputForm>({
+        mode: "onBlur"
+    })
+    const formWatch = watch(["name", "comment"])
+
     const onSubmit: SubmitHandler<InputForm> = (data) => addNewComment(data, cloneBurgerObj)
     return (
         <div className={styles.container}>
@@ -71,6 +79,7 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
                             <Controller
                                 control={control}
                                 name="name"
+                                rules={{ required: "Поле обязательное для заполнения", pattern: { value: /^[а-яА-ЯёЁa-zA-Z0-9\s]+$/, message: "Начните с буквы, вы ведь человек ??" } }}
                                 render={({ field: { onChange, onBlur } }) => (
                                     <InputFromRHF
                                         onMyChange={onChange}
@@ -81,9 +90,11 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
                                     />
                                 )}
                             />
+                            <span className={styles.errors}>{errors?.name && errors.name.message}</span>
                             <Controller
                                 control={control}
                                 name="comment"
+                                rules={{ required: "Поле обязательное для заполнения", pattern: { value: /^[а-яА-ЯёЁa-zA-Z0-9\s]+$/, message: "Начните с буквы, вы ведь человек ??" } }}
                                 render={({ field: { onChange, onBlur } }) => (
                                     <InputFromRHF
                                         onMyChange={onChange}
@@ -94,6 +105,7 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
                                     />
                                 )}
                             />
+                            <span className={styles.errors}>{errors?.comment && errors?.comment.message}</span>
                             <div style={{ marginTop: "15px" }}>
                                 <Button viev="primary" type="submit" size='s' onClick={handleFlag}>Добавить</Button>
                             </div>

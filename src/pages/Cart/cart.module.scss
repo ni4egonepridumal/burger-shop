@@ -1,6 +1,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 75vh;
 }
 .container_epmpty {
   max-width: 1200px;
@@ -44,5 +45,5 @@
 .totalPrice {
   position: fixed;
   right: 400px;
-  top: 480px;
+  top: 575px;
 }

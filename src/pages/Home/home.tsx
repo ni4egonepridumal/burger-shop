@@ -18,7 +18,7 @@ export const HomePage = () => {
             <h1 className={styles.burger_head}>Выбери свой бургер</h1>
             <div>
                 <label>Сортировать по:</label>
-                <select value={burger} name="sortBurger" onChange={sortBurger}>
+                <select style={{ marginLeft: "15px" }} className={styles.select} value={burger} name="sortBurger" onChange={sortBurger}>
                     <option value={"price"}>Цене</option>
                     <option value={"alphabet"}>Алфавиту</option>
                 </select>

@@ -43,17 +43,16 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
             comment: dataFromForm.comment,
             price: totalPrice,
         });
-        setFlag(!flag)
+        setFlag(!flag);
     }
     console.log(JSON.stringify(orderJSON))
-    // React.useEffect(() => {
-
-    // }, [flag])
     const {
         handleSubmit,
-        // formState: { errors },
-        control
-    } = useForm<IInputForm>()
+        formState: { errors },
+        control,
+    } = useForm<IInputForm>({
+        mode: "onBlur"
+    })
     const onSubmit: SubmitHandler<IInputForm> = (data) => addDataFromOrderJSON(data, filterBurgerOnCart)
     return (
         <div>
@@ -61,6 +60,7 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
                 <Controller
                     control={control}
                     name="name"
+                    rules={{ required: "Обязательное поле", pattern: { value: /^[а-яА-ЯёЁa-zA-Z0-9\s]+$/, message: "Начните с буквы, вы ведь человек ??" } }}
                     render={({ field: { onChange, onBlur } }) => (
                         <InputFromRHF
                             onMyChange={onChange}
@@ -68,12 +68,15 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
                             label="Ваше имя"
                             placeholder="Например: Анатолий"
                             type="text"
+
                         />
                     )}
                 />
+                <span className="errors">{errors?.name && errors.name.message}</span>
                 <Controller
                     control={control}
                     name="tel"
+                    rules={{ required: "Обязательное поле", pattern: { value: /^(\+)?((\d{2,3}) ?\d|\d)(([ -]?\d)|( ?(\d{2,3}) ?)){5,12}\d$/, message: "Укажите верный номер" } }}
                     render={({ field: { onChange, onBlur } }) => (
                         <InputFromRHF
                             onMyChange={onChange}
@@ -84,6 +87,7 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
                         />
                     )}
                 />
+                <span className="errors">{errors?.tel && errors.tel.message}</span>
                 <Controller
                     control={control}
                     name="comment"
@@ -101,6 +105,7 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
                 <Controller
                     control={control}
                     name="adress"
+                    rules={{ required: "Обязательное поле" }}
                     render={({ field: { onChange, value } }) => (
                         <AddressSuggestions
                             token={API_KEY}
@@ -109,6 +114,7 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
                             defaultQuery='Екатеринбург' />
                     )}
                 />
+                <span className="errors">{errors?.adress?.message}</span>
                 <div style={{ marginTop: '20px' }}>
                     <Button type='submit' size="m" viev='secondary'>Заказать</Button>
                 </div>
