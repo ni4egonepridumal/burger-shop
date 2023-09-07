@@ -13,7 +13,7 @@ import { clearCart } from "../../redux/slices/addBurgerToCartSlice";
 export const CartPage = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    const burgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
+    const burgerFromLocalStorage = JSON.parse(localStorage?.getItem("burger"));
     const burgerToCart = useAppSelector(state => state.burgerToCart);
     const [flag, setFlag] = React.useState(false)
     const totalPriceFromLocalStorage = burgerFromLocalStorage?.reduce((accum: number, burger: IBurger) => accum += burger.price * burger.count, 0)
