@@ -11,7 +11,7 @@ interface IOneBurgerFromCart {
     burger: IBurger,
 }
 
-export const OneBurgerFromCart = ({ burger }: IOneBurgerFromCart) => {
+export const OneBurgerFromCart: React.FC<IOneBurgerFromCart> = ({ burger }: IOneBurgerFromCart) => {
     const [burgerPrice, setBurgerPrice] = React.useState<number>(burger.price * burger.count);
     const dispatch = useAppDispatch()
     const handlePlusClick = () => {
