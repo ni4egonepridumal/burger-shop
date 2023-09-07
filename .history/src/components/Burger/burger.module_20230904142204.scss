@@ -1,0 +1,27 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+}
+.text_color {
+  color: var(--accent);
+  margin-top: 20px;
+}
+.feedback_size {
+  max-width: 200px;
+}
+.overflow {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+/* from button */
+
+.position {
+  display: flex;
+  justify-content: center;
+}

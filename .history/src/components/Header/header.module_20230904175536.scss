@@ -1,0 +1,42 @@
+.container {
+  box-shadow: 5px 5px 20px var(--header-shadow);
+  background-color: var(--primary);
+}
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+.burger {
+  display: flex;
+}
+.text {
+  margin-left: 15px;
+  color: white;
+  background-clip: text;
+  background-image: var(--button);
+  font-size: 20px;
+  font-weight: 900;
+  &:hover {
+    color: transparent;
+    background-clip: text;
+    background-image: var(--button-hover);
+  }
+}
+.icon {
+  fill: var(--icon);
+}
+.icon:hover {
+  fill: var(--accent);
+  transition: all 0.9s ease;
+}
+.countBurger {
+  background-color: var(--button);
+  border-radius: 15px;
+  display: inline-block;
+  font-size: 25px;
+  padding: 0px 9px;
+}

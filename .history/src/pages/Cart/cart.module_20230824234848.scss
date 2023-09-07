@@ -1,0 +1,12 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.gif {
+  height: 100px;
+  background-image: url("https://giphy.com/gifs/JB7gDgg1BKjRu/fullscreen");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}

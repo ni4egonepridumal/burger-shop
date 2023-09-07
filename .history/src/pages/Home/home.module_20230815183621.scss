@@ -1,0 +1,17 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.burger_head {
+  text-align: center;
+  margin-top: 35px;
+}
+.burger_inner {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.loader {
+  margin: 0 auto;
+}

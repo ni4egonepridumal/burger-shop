@@ -1,0 +1,49 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 70vh;
+}
+.container_epmpty {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.position {
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+  padding-bottom: 20%;
+}
+.gif {
+  width: 600px;
+  height: 400px;
+  background-image: url(https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHVyNmh6bmE3cDZsdHdoNXVkazBwZTlqOHFzcXZ5MGFxOWp0ZGZmZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JB7gDgg1BKjRu/giphy.gif);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+.text_inner {
+  margin-top: 25px;
+}
+.text {
+  color: var(--accent);
+}
+.cart_inner {
+  display: flex;
+  justify-content: space-between;
+}
+.fixed {
+  position: fixed;
+  top: 100px;
+  right: 400px;
+  max-width: 200px;
+}
+.totalPrice {
+  position: fixed;
+  right: 400px;
+  top: 575px;
+}

@@ -1,0 +1,19 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+}
+.text_color {
+  color: var(--accent);
+}
+
+/* from button */
+
+.position {
+  display: flex;
+  justify-content: center;
+}

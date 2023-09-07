@@ -1,0 +1,20 @@
+.btn {
+  width: 100px;
+  height: 30px;
+  border-radius: 15px;
+  color: var(--text);
+  border: none;
+  padding: 5px;
+  background: var(--button);
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+  font-family: inherit;
+  font-size: 16px;
+}
+.btn:hover {
+  background: var(--button-hover);
+}
+
+.primary {
+  width: 100px;
+}

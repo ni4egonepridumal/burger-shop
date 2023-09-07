@@ -1,0 +1,25 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.burger_head {
+  text-align: center;
+  margin-top: 35px;
+}
+.burger_inner {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.loader {
+  margin: 40px auto;
+}
+.select {
+  background-color: var(--secondary);
+  padding: 10px 9px;
+  border-radius: 15px;
+  border: 1px solid var(--button);
+  color: white;
+  margin-top: 10px;
+}

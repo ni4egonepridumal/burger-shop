@@ -1,0 +1,29 @@
+.burger_cart {
+  max-width: 285px;
+}
+.burger_image {
+  width: 300px;
+  height: 300px;
+}
+.burger_text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  p {
+    text-align: center;
+  }
+}
+.burger_price {
+  display: flex;
+  justify-content: space-around;
+}
+.burger_footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+}
+.burger_more {
+  color: var(--accent);
+  cursor: pointer;
+}

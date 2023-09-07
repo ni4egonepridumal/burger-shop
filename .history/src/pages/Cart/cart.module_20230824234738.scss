@@ -1,0 +1,12 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.gif {
+  height: 100px;
+  background-image: url("https://giphy.com/embed/JB7gDgg1BKjRu");
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}

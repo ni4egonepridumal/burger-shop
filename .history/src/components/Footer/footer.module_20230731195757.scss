@@ -1,0 +1,12 @@
+.container {
+  box-shadow: 5px 5px 20px var(--header-shadow);
+  background-color: var(--primary);
+}
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  padding-top: 15px;
+}

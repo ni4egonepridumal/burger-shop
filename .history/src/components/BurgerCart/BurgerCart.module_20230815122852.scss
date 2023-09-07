@@ -1,0 +1,17 @@
+.burger_cart {
+  max-width: 300px;
+  border: 1px solid red;
+}
+.burger_image {
+  width: 300px;
+  height: 300px;
+}
+.burger_text {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.burger_price {
+  display: flex;
+  justify-content: space-between;
+}
