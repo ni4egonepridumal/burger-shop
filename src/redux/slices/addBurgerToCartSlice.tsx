@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IBurger } from "../../types";
 
@@ -8,6 +9,7 @@ export const burgerToCart = createSlice({
     initialState: myState,
     reducers: {
         addBurgerToCart: (state, action: PayloadAction<IBurger>) => {
+            //@ts-ignore
             const getBurgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"))
             if (getBurgerFromLocalStorage) {
                 const addedBurgerFromLocalStorage = [...getBurgerFromLocalStorage, action.payload]
@@ -22,6 +24,7 @@ export const burgerToCart = createSlice({
             }
         },
         deleteBurgerFromCart: (state, action) => {
+            //@ts-ignore
             const getBurgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
             if (getBurgerFromLocalStorage) {
                 const filterBurger = getBurgerFromLocalStorage.filter((item: IBurger) => item.id !== action.payload)
@@ -34,29 +37,27 @@ export const burgerToCart = createSlice({
 
         },
         setCountPlusBurger: (state, action: PayloadAction<number>) => {
+            //@ts-ignore
             const getBurgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
             if (getBurgerFromLocalStorage) {
-                const countBurger = getBurgerFromLocalStorage.map((item: IBurger) => item.id === action.payload ? { ...item, count: item.count + 1 } : { ...item })
+                const countBurger = getBurgerFromLocalStorage.map((item: IBurger) => +item.id === action.payload ? { ...item, count: item.count + 1 } : { ...item })
                 state = countBurger
                 localStorage.setItem("burger", JSON.stringify(countBurger))
-                // console.log("сработала часть из локалстоража")
                 return state
             } else {
-                // console.log("сработала часть из стейта")
-                return state = state.map(item => item.id === action.payload ? { ...item, count: item.count + 1 } : { ...item })
+                return state = state.map(item => +item.id === action.payload ? { ...item, count: item.count + 1 } : { ...item })
             }
         },
         setCountMinusBurger: (state, action: PayloadAction<number>) => {
+            //@ts-ignore
             const getBurgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
             if (getBurgerFromLocalStorage) {
-                const countBurger = getBurgerFromLocalStorage.map((item: IBurger) => item.id === action.payload ? { ...item, count: item.count - 1 } : { ...item })
+                const countBurger = getBurgerFromLocalStorage.map((item: IBurger) => +item.id === action.payload ? { ...item, count: item.count - 1 } : { ...item })
                 state = countBurger
                 localStorage.setItem("burger", JSON.stringify(countBurger))
-                // console.log("сработала часть из локалстоража")
                 return state
             } else {
-                // console.log("сработала часть из стейта")
-                return state = state.map(item => item.id === action.payload ? { ...item, count: item.count - 1 } : { ...item })
+                return state = state.map(item => +item.id === action.payload ? { ...item, count: item.count - 1 } : { ...item })
             }
         }
     },

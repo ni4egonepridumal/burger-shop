@@ -32,6 +32,8 @@ export const BurgerItem: React.FC<IBurgerCartProps> = ({ burgers }) => {
         dispatch(deleteBurgerFromCart(burgers.id))
     }
     let burgerFromLocalStorage = [];
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
     burgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
     const choiseBurger = burgerFromLocalStorage ? burgerFromLocalStorage?.some((burger: IBurger) => burger.id === burgers.id) : burgerToCart?.some((burger: IBurger) => burger.id === burgers.id)
     return (

@@ -10,7 +10,7 @@ export const burgerApi = createApi({
             providesTags: (result) =>
                 result
                     ? [
-                        ...result.map(({ id }) => ({ type: 'Comments' as const, id })),
+                        ...result.map(({ id }: never) => ({ type: 'Comments' as const, id })),
                         { type: 'Comments', id: 'LIST' },
                     ]
                     : [{ type: 'Comments', id: 'LIST' }],
@@ -18,7 +18,6 @@ export const burgerApi = createApi({
         sortBurgerFromName: builder.query({
             query: () => `BroBurger?sortBy=name`,
         }),
-        // тестирую добавление коментария
         addCommentFromClient: builder.mutation({
             query: (body) => ({
                 headers: { 'content-type': 'application/json' },

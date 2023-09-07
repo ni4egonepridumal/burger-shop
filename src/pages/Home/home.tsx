@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { BurgerItem } from "../../components/BurgerItem";
 import styles from "./home.module.scss"
 import { useGetAllBurgerQuery, useSortBurgerFromNameQuery } from "../../redux";
@@ -7,7 +8,9 @@ import { IBurger } from "../../types";
 
 
 export const HomePage = () => {
+    //@ts-ignore
     const { data: allBurger, isLoading } = useGetAllBurgerQuery();
+    //@ts-ignore
     const { data: sortBurgerAlphabet } = useSortBurgerFromNameQuery();
     const [burger, setBurger] = React.useState<string>("");
     const sortBurger = (e: React.ChangeEvent<HTMLSelectElement>) => {

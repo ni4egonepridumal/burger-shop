@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "../Button";
 import styles from "./burger.module.scss";
 import { Feedback } from "../Feedback/feedback";
@@ -25,6 +24,7 @@ type IBurgerPage = {
 export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
     const { aboutBurger, burgerToCart } = useAppSelector(state => state)
     const [addComment, { isError }] = useAddCommentFromClientMutation();
+    console.log(isError)
 
     const cloneBurgerObj = structuredClone(burgers)
 
@@ -40,6 +40,8 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
     const handleFlag = () => {
         if (errors.name || errors.comment || formWatch[0] === undefined || formWatch[1] === undefined) {
             alert("заполните пожалуйста обязательное поле")
+        } else if (!isError) {
+            alert("не удалось добавить коментарий, попробуйте позже")
         } else {
             alert("коментарий добавлен, после модерации он появится")
         }
@@ -52,6 +54,8 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
         dispatch(deleteBurgerFromCart(burgers.id))
     }
     let burgerFromLocalStorage = [];
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
     burgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
     const choiseBurger = burgerFromLocalStorage ? burgerFromLocalStorage?.some((burger: IBurger) => burger.id === burgers.id) : burgerToCart?.some((burger: IBurger) => burger.id === burgers.id)
     const {

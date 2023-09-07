@@ -31,6 +31,8 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
 
     const [orderJSON, setOrderJSON] = React.useState({});
     const { burgerToCart } = useAppSelector(state => state);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
     const burgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"))
     const filterBurgerOnCart = burgerToCart.map((item: IBurger) => ({ "name": item.name, "countBurger": item.count }));
     const filterBurgerOnLokalStorage = burgerFromLocalStorage.map((item: IBurger) => ({ "name": item.name, "countBurger": item.count }));

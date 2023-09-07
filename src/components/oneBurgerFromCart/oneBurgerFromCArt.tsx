@@ -16,11 +16,11 @@ export const OneBurgerFromCart = ({ burger }: IOneBurgerFromCart) => {
     const dispatch = useAppDispatch()
     const handlePlusClick = () => {
         setBurgerPrice(burgerPrice + burger.price)
-        dispatch(setCountPlusBurger(burger.id))
+        dispatch(setCountPlusBurger(+burger.id))
     }
     const handleMinusClick = () => {
         if (burger.count !== 1) {
-            dispatch(setCountMinusBurger(burger.id))
+            dispatch(setCountMinusBurger(+burger.id))
             setBurgerPrice(burgerPrice - burger.price)
         }
     }

@@ -8,11 +8,11 @@ import { DataUser } from "../../components/DataUser";
 
 
 export const CartPage = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     const burgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
     const { burgerToCart } = useAppSelector(state => state);
     const [flag, setFlag] = React.useState(false)
-    const totalPriceFromState = burgerToCart.reduce((accum, burger) => accum += burger.price * burger.count, 0)
     const totalPriceFromLocalStorage = burgerFromLocalStorage.reduce((accum: number, burger: IBurger) => accum += burger.price * burger.count, 0)
     return (
         <>
