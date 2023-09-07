@@ -10,6 +10,7 @@ import { useAppDispatch } from "../../redux/hooks";
 import { clearCart } from "../../redux/slices/addBurgerToCartSlice";
 
 
+
 export const CartPage = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore

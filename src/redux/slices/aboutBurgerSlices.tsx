@@ -2,7 +2,6 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { IBurger } from "../../types";
 
 
-
 const myState: IBurger[] = []
 
 export const aboutBurger = createSlice({
