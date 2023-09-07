@@ -8,8 +8,10 @@ export const aboutBurger = createSlice({
     name: "aboutBurger",
     initialState: myState,
     reducers: {
-        moreAboutBurger: (state: IBurger[], action: PayloadAction<IBurger>) =>
-            state = [action.payload],
+        moreAboutBurger: (state: IBurger[], action: PayloadAction<IBurger>): IBurger[] => {
+            state = [action.payload];
+            return state
+        },
     },
 });
 
