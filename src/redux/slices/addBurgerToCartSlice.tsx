@@ -36,6 +36,18 @@ export const burgerToCart = createSlice({
             }
 
         },
+        clearCart: (state) => {
+            console.log("rkbr ,sk")
+            //@ts-ignore
+            const getBurgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
+            if (getBurgerFromLocalStorage) {
+                localStorage.clear()
+                state = []
+                return state
+            } else {
+                return state = []
+            }
+        },
         setCountPlusBurger: (state, action: PayloadAction<number>) => {
             //@ts-ignore
             const getBurgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
@@ -64,6 +76,6 @@ export const burgerToCart = createSlice({
 }
 )
 
-export const { addBurgerToCart, deleteBurgerFromCart, setCountPlusBurger, setCountMinusBurger } = burgerToCart.actions;
+export const { addBurgerToCart, deleteBurgerFromCart, setCountPlusBurger, setCountMinusBurger, clearCart } = burgerToCart.actions;
 
 export default burgerToCart.reducer

@@ -22,9 +22,9 @@ type IBurgerPage = {
 }
 
 export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
-    const { aboutBurger, burgerToCart } = useAppSelector(state => state)
+    const burgerToCart = useAppSelector(state => state.burgerToCart)
+    const aboutBurger = useAppSelector(state => state.aboutBurger)
     const [addComment, { isError }] = useAddCommentFromClientMutation();
-    console.log(isError)
 
     const cloneBurgerObj = structuredClone(burgers)
 
@@ -40,7 +40,7 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
     const handleFlag = () => {
         if (errors.name || errors.comment || formWatch[0] === undefined || formWatch[1] === undefined) {
             alert("заполните пожалуйста обязательное поле")
-        } else if (!isError) {
+        } else if (isError === true) {
             alert("не удалось добавить коментарий, попробуйте позже")
         } else {
             alert("коментарий добавлен, после модерации он появится")
@@ -129,7 +129,7 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
                     <Button onClick={() => setPopup(!popup)} viev="secondary" size='m'>Вернуться</Button>
                 </div>
                 <div>
-                    <Button viev={'secondary'} size='m' onClick={handleClick}>{choiseBurger ? "Удалить" : "В корзину"}</Button>
+                    <Button viev='secondary' size='m' onClick={handleClick}>{choiseBurger ? "Удалить" : "В корзину"}</Button>
                 </div>
             </div>
         </div >

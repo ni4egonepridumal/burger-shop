@@ -15,7 +15,7 @@ interface IBurgerCartProps {
 export const BurgerItem: React.FC<IBurgerCartProps> = ({ burgers }) => {
     const dispatch = useAppDispatch();
     const [popup, setPopup] = React.useState(false);
-    const { burgerToCart } = useAppSelector((state) => state);
+    const burgerToCart = useAppSelector((state) => state.burgerToCart);
     const showPopup = () => {
         window.scrollTo(0, 0);
         dispatch(moreAboutBurger(burgers))

@@ -30,7 +30,7 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
     const API_KEY = 'f1283a525fe07a74d40b877ea2bc44c721f6246b';
 
     const [orderJSON, setOrderJSON] = React.useState({});
-    const { burgerToCart } = useAppSelector(state => state);
+    const  burgerToCart  = useAppSelector(state => state.burgerToCart);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     const burgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"))

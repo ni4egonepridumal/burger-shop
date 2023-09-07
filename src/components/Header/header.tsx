@@ -11,7 +11,7 @@ export const Header = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     const burgerFromLocalStorage = JSON.parse(localStorage.getItem("burger"));
-    const { burgerToCart } = useAppSelector(state => state)
+    const burgerToCart = useAppSelector(state => state.burgerToCart)
     return (
         <div className={styles.container}>
             <div className={styles.inner}>
