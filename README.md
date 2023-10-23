@@ -20,3 +20,4 @@
 <p>-sass</p>
 <br/>
 <p>Для хранения данных использовал LocalStorage</p>
+<p>Данные беру с mockapi.io</p>
