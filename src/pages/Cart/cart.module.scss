@@ -1,7 +1,6 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 75vh;
 }
 .container_epmpty {
   max-width: 1200px;
@@ -15,7 +14,6 @@
   width: 600px;
   flex-wrap: wrap;
   margin-top: 15px;
-  padding-bottom: 20%;
 }
 .gif {
   width: 600px;
@@ -25,6 +23,12 @@
   background-size: cover;
   position: relative;
   overflow: hidden;
+  @media (max-width: 650px) {
+    width: 440px;
+  }
+  @media (max-width: 470px) {
+    width: 320px;
+  }
 }
 .text_inner {
   margin-top: 25px;
@@ -41,9 +45,80 @@
   top: 100px;
   right: 400px;
   max-width: 200px;
+  @media (max-width: 1320px) {
+    position: fixed;
+    top: 100px;
+    right: 0;
+    margin-right: 20px;
+  }
+  @media (max-width: 450px) {
+    display: none;
+  }
 }
-.totalPrice {
+.burgerInCart {
+  @media (max-width: 840px) {
+    display: flex;
+    max-width: 600px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 810px) {
+    display: flex;
+    max-width: 400px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 620px) {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+/* mobilemenu */
+
+.mobileMenu {
+  display: none;
+  @media (max-width: 450px) {
+    display: block;
+  }
+}
+.positionMobileMenuToOpen {
   position: fixed;
-  right: 400px;
-  top: 575px;
+  top: 100px;
+  right: 0;
+  background-color: var(--button);
+  padding-left: 20px;
+  border-radius: 10px;
+}
+.positionMobileMenuToCloset {
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  position: fixed;
+  top: 100px;
+  right: 0;
+  background-color: var(--button);
+}
+.closetMenu {
+  position: fixed;
+  top: 90px;
+  right: 210px;
+  padding: 5px 8px;
+  background-color: var(--alert);
+  border-radius: 10px;
+}
+/* успешный заказ */
+
+.successOrder {
+  max-width: 800px;
+  @media (max-width: 1028px) {
+    max-width: 600px;
+  }
+  @media (max-width: 820px) {
+    max-width: 400px;
+    h1 {
+      font-size: 20px;
+    }
+  }
+  @media (max-width: 620px) {
+    max-width: 300px;
+    margin: 0 auto;
+  }
 }

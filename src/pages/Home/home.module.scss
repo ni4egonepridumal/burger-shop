@@ -11,6 +11,9 @@
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
+  @media (max-width: 1186px) {
+    justify-content: center;
+  }
 }
 .loader {
   margin: 40px auto;
@@ -22,4 +25,9 @@
   border: 1px solid var(--button);
   color: white;
   margin-top: 10px;
+}
+.sort {
+  @media (max-width: 1186px) {
+    text-align: center;
+  }
 }

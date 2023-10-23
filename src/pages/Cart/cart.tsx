@@ -19,21 +19,13 @@ export const CartPage = () => {
     const [flag, setFlag] = React.useState(false)
     const totalPriceFromLocalStorage = burgerFromLocalStorage?.reduce((accum: number, burger: IBurger) => accum += burger.price * burger.count, 0)
     const dispatch = useAppDispatch();
+    const [isMobileHidden, setIsMobileHidden] = React.useState<boolean>(false)
     return (
         <>
             {burgerFromLocalStorage && burgerFromLocalStorage.length > 0 ?
                 <div className={styles.container}>
-                    <div className={styles.cart_inner}>
-                        <div>
-                            {burgerToCart && burgerFromLocalStorage.map((burger: IBurger) => <OneBurgerFromCart key={burger.id} burger={burger} />)}
-                        </div>
-                        <div className={styles.fixed}>
-                            <DataUser flag={flag} setFlag={setFlag} totalPrice={totalPriceFromLocalStorage && totalPriceFromLocalStorage} />
-                        </div>
-                    </div>
-                    <div className={styles.totalPrice}>Общая стоимость заказа: <span>{totalPriceFromLocalStorage && totalPriceFromLocalStorage} руб</span></div>
                     {flag &&
-                        <>
+                        <div className={styles.successOrder}>
                             <h1 style={{ textAlign: "center", marginTop: "50px" }}>Ваш заказ оформлен
                                 <br />
                                 <span style={{ fontSize: '18px' }}>(он в консоле)</span>
@@ -42,7 +34,33 @@ export const CartPage = () => {
                             <div style={{ textAlign: "center" }}>
                                 <Button size='m' viev="primary" onClick={() => dispatch(clearCart())}><Link to={"/"}>Вернуться на главную?</Link></Button>
                             </div>
-                        </>}
+                        </div>}
+                    <div className={styles.cart_inner}>
+                        <div className={styles.burgerInCart}>
+                            {burgerToCart && burgerFromLocalStorage.map((burger: IBurger) => <OneBurgerFromCart key={burger.id} burger={burger} />)}
+                        </div>
+                        <div className={styles.fixed}>
+                            <DataUser flag={flag} setFlag={setFlag} totalPrice={totalPriceFromLocalStorage && totalPriceFromLocalStorage} setIsMobileHidden={setIsMobileHidden} />
+                        </div>
+                        <div onClick={() => setIsMobileHidden(true)} className={styles.mobileMenu}>
+                            {isMobileHidden ?
+                                <div className={styles.positionMobileMenuToOpen}>
+                                    <span onClick={(e) => { setIsMobileHidden(false), e.stopPropagation() }} className={styles.closetMenu}>X</span>
+                                    <DataUser
+                                        flag={flag}
+                                        setFlag={setFlag}
+                                        totalPrice={totalPriceFromLocalStorage && totalPriceFromLocalStorage}
+                                        setIsMobileHidden={setIsMobileHidden}
+
+                                    />
+                                </div>
+                                :
+                                <div className={styles.positionMobileMenuToCloset}>
+                                    Оформить заказ
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
                 :
                 <div className={styles.container_epmpty}>

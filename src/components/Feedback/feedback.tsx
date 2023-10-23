@@ -1,7 +1,8 @@
+
 import styles from './feedback.module.scss';
 
 interface IFeedback {
-    itemComment: { name: string, comment: string }
+    itemComment: { name: string, comment: string,  }
 }
 export const Feedback: React.FC<IFeedback> = ({ itemComment }) => {
     return (

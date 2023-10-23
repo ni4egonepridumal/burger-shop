@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Button } from "../Button";
 import styles from "./burger.module.scss";
 import { Feedback } from "../Feedback/feedback";
@@ -7,7 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 import { addBurgerToCart, deleteBurgerFromCart } from '../../redux/slices/addBurgerToCartSlice'
 import { IBurger } from "../../types";
 import { useAddCommentFromClientMutation } from "../../redux";
-
+import cn from "classnames"
 
 
 type InputForm = {
@@ -22,6 +23,8 @@ type IBurgerPage = {
 }
 
 export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
+    const [addFeedback, setAddFeedback] = useState<boolean>(false)
+    const [isHideFeedback, setIsHideFeedBack] = useState<boolean>(false)
     const burgerToCart = useAppSelector(state => state.burgerToCart)
     const aboutBurger = useAppSelector(state => state.aboutBurger)
     const [addComment, { isError }] = useAddCommentFromClientMutation();
@@ -41,9 +44,9 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
         if (errors.name || errors.comment || formWatch[0] === undefined || formWatch[1] === undefined) {
             alert("заполните пожалуйста обязательное поле")
         } else if (isError === true) {
-            alert("не удалось добавить коментарий, попробуйте позже")
+            alert("не удалось добавить комментарий, попробуйте позже")
         } else {
-            alert("коментарий добавлен, после модерации он появится")
+            alert("комментарий добавлен, после модерации он появится")
         }
 
     }
@@ -73,13 +76,16 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
         <div className={styles.container}>
             {aboutBurger.map(burger =>
                 <div key={burger.id} className={styles.inner}>
-                    <img src={`./burgerImg/${burger.image}`} />
+                    <img className={styles.burger_img} src={`./burgerImg/${burger.image}`} />
                     <div>
                         <div><span className={styles.text_color}>Цена:</span> {burger.price} руб.</div>
                         <div className={styles.text_color}>Состав:</div>
                         <div>{burger.composition}</div>
-                        <div className={styles.text_color}>Добавить комментарий:</div>
-                        <form onSubmit={handleSubmit(onSubmit)} className={styles.feedback_size}>
+                        <div onClick={() => setAddFeedback(true)} className={styles.text_color}>Добавить комментарий:</div>
+                        <form onSubmit={handleSubmit(onSubmit)}
+                            className={cn(styles.feedback_size,
+                                { [styles.feedback_mobile]: addFeedback === true })}
+                        >
                             <Controller
                                 control={control}
                                 name="name"
@@ -110,14 +116,40 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
                                 )}
                             />
                             <span className={styles.errors}>{errors?.comment && errors?.comment.message}</span>
-                            <div style={{ marginTop: "15px" }}>
-                                <Button viev="primary" type="submit" size='s' onClick={handleFlag}>Добавить</Button>
+                            <div style={{ marginTop: "15px", display: "flex" }}>
+                                <span>
+                                    <Button
+                                        viev="primary"
+                                        type="submit"
+                                        size='s'
+                                        onClick={handleFlag}>Добавить
+                                    </Button>
+                                </span>
+                                <span className={styles.closeForm}>
+                                    <Button
+                                        viev="secondary"
+                                        type="submit"
+                                        size='s'
+                                        onClick={() => setAddFeedback(false)}>Закрыть
+                                    </Button>
+                                </span>
                             </div>
                         </form>
+                        <div onClick={() => setIsHideFeedBack(true)} className={styles.text_color}>Отзывы:</div>
                         <div className={styles.overflow}>
-                            <div className={styles.text_color}>Отзывы:</div>
 
-                            <div>{burger.comments.map((item: { name: string, comment: string }) => <Feedback key={item.comment} itemComment={item} />)}</div>
+
+                            <div
+                                className={cn(styles.feedback_size,
+                                    { [styles.feedback_mobile]: isHideFeedback === true })}
+                            >
+                                {burger.comments.map((item: { name: string, comment: string }) => <Feedback key={item.comment} itemComment={item} />)}
+                            </div>
+                            {isHideFeedback === true ? <div className={styles.closeFeedBack}><Button
+                                viev="primary"
+                                type="submit"
+                                size='s'
+                                onClick={() => setIsHideFeedBack(false)}>Закрыть</Button></div> : null}
                         </div>
 
                     </div>
@@ -125,7 +157,7 @@ export const ChoiseBurger = ({ popup, setPopup, burgers }: IBurgerPage) => {
             )
             }
             <div className={styles.position}>
-                <div style={{ marginRight: "15px" }}>
+                <div className={styles.button_comeBack}>
                     <Button onClick={() => setPopup(!popup)} viev="secondary" size='m'>Вернуться</Button>
                 </div>
                 <div>

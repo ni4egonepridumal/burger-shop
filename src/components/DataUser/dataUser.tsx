@@ -23,10 +23,11 @@ interface IBurgerChoise {
 type IPropsDataUser = {
     totalPrice: number,
     setFlag: (arg0: boolean) => void;
-    flag: boolean
+    flag: boolean,
+    setIsMobileHidden: (arg0: boolean) => void;
 }
 
-export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }) => {
+export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag, setIsMobileHidden }) => {
     const API_KEY = 'f1283a525fe07a74d40b877ea2bc44c721f6246b';
 
     const [orderJSON, setOrderJSON] = React.useState({});
@@ -46,7 +47,9 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
             price: totalPrice,
         });
         setFlag(!flag);
+        setIsMobileHidden(false)
     }
+
     console.log(JSON.stringify(orderJSON))
     const {
         handleSubmit,
@@ -113,7 +116,9 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
                             token={API_KEY}
                             value={value}
                             onChange={onChange}
-                            defaultQuery='Екатеринбург' />
+                            defaultQuery='Екатеринбург'
+                            count={3}
+                        />
                     )}
                 />
                 <span className="errors">{errors?.adress?.message}</span>
@@ -121,7 +126,7 @@ export const DataUser: React.FC<IPropsDataUser> = ({ totalPrice, setFlag, flag }
                     <Button type='submit' size="m" viev='secondary'>{flag ? "Изменить" : "Заказать"}</Button>
                 </div>
             </form>
-
+            <div className="totalPrice">Итого: {totalPrice} руб.</div>
         </div>
     );
 };

@@ -6,7 +6,15 @@
   color: white;
   margin-top: 10px;
 }
+.react-dadata__suggestions {
+  @media (max-width: 500px) {
+    width: 155px;
+  }
+}
 .errors {
   color: red;
   font-size: 18px;
+}
+.totalPrice {
+  margin-top: 20px;
 }

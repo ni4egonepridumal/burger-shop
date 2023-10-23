@@ -7,12 +7,14 @@ import { Footer } from "./components/Footer";
 
 function App() {
   return (
-    <div>
+    <div style={{ flexDirection: "column", display: "flex", height: "100vh" }}>
       <Header />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/cart" element={<CartPage />} />
-      </Routes>
+      <div style={{ flexGrow: 1 }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
+      </div>
       <Footer />
     </div>
   )

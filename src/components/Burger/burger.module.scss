@@ -2,10 +2,12 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .inner {
   display: flex;
   align-items: center;
+  @media (max-width: 1450px) {
+    display: block;
+  }
 }
 .text_color {
   color: var(--accent);
@@ -13,17 +15,61 @@
 }
 .feedback_size {
   max-width: 200px;
+  position: relative;
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+.feedback_isHidden {
+  display: inline;
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+.feedback_mobile {
+  display: inline;
+}
+.closeForm {
+  display: none;
+  @media (max-width: 500px) {
+    display: inline;
+    margin-bottom: 10px;
+  }
+}
+.closeFeedBack {
+  text-align: center;
 }
 .overflow {
   max-height: 300px;
   overflow-y: scroll;
 }
+.burger_img {
+  height: auto;
+  width: 100%;
+  @media (max-width: 1450px) {
+    display: flex;
+    margin: 0 auto;
+  }
+}
 
 /* from button */
-
+.button_comeBack {
+  margin-right: 15px;
+  @media (max-width: 400px) {
+    margin-right: 0px;
+  }
+}
 .position {
   display: flex;
   justify-content: center;
+  @media (max-width: 400px) {
+    display: block;
+    text-align: center;
+    // margin: 0 auto;
+    div {
+      margin-top: 15px;
+    }
+  }
 }
 .errors {
   color: red;
